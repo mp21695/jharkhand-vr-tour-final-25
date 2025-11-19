@@ -28,6 +28,8 @@
       <img id="skyimg" src="betla-national-park-360.jpg">
       <audio id="bg-sound" src="forest.mp3"></audio>
       <audio id="tamil-audio" src="betla.mp3"></audio> <!-- Added Tamil audio here -->
+      <!-- Pre-recorded Odia Audio -->
+      <audio id="odia-audio" src="betla-or.m4a"></audio>
     </a-assets>
 
     <!-- Skybox -->
@@ -43,7 +45,7 @@
   <button onclick="playDescription('en')">🎧 Play English Description</button>
   <button onclick="playDescription('hi')">🎙️ प्ले हिंदी विवरण</button>
   <button onclick="playTamilDescription()">🎤 தமிழ் விவரம் இயக்கவும்</button> <!-- Tamil button -->
-  
+  <button onclick="playOdiaDescription()">🪔 ଓଡ଼ିଆ ବର୍ଣ୍ଣନା</button>
   <button onclick="goPrev()">⬅️ Previous Location</button>
   <button onclick="exitTour()">🚪 Exit Tour</button>
 </div>
@@ -76,6 +78,12 @@
     // Access the preloaded Tamil audio and play it
     const tamilAudio = document.getElementById('tamil-audio');
     tamilAudio.play().catch(err => console.log("Tamil audio error:", err));
+  }
+
+  function playOdiaDescription() {
+    // Access the preloaded Odia audio and play it
+    const odiaAudio = document.getElementById('odia-audio');
+    odiaAudio.play().catch(err => console.log("Odia audio error:", err));
   }
 
   function goPrev() { window.location.href = "netarhat.html"; }
