@@ -29,6 +29,8 @@
       <img id="skyimg" src="patratu-valley-360.jpg">
       <audio id="bg-sound" src="mountainwind.mp3"></audio>
       <audio id="tamil-audio" src="patratu.mp3"></audio> <!-- Tamil audio added here -->
+      <!-- Odia audio -->
+      <audio id="odia-audio" src="patratu-or.m4a"></audio>
     </a-assets>
 
     <!-- Sky image for the 360° view -->
@@ -42,6 +44,7 @@
   <button onclick="playDescription('en')">🎧 Play English Description</button>
   <button onclick="playDescription('hi')">🎙️ प्ले हिंदी विवरण</button>
   <button onclick="playTamilDescription()">🔊 தமிழ் விளக்கம்</button>
+  <button onclick="playOdiaDescription()">🪔 ଓଡ଼ିଆ ବର୍ଣ୍ଣନା</button>
   <button onclick="goPrev()">⬅️ Previous Location</button>
   <button onclick="goNext()">Next Location ➡️</button>
 </div>
@@ -72,6 +75,12 @@
     // Access the preloaded Tamil audio and play it
     const tamilAudio = document.getElementById('tamil-audio');
     tamilAudio.play().catch(err => console.log("Tamil audio error:", err));
+  }
+
+  function playOdiaDescription() {
+    // Access the preloaded Odia audio and play it
+    const odiaAudio = document.getElementById('odia-audio');
+    odiaAudio.play().catch(err => console.log("Odia audio error:", err));
   }
 
   function goPrev() { window.location.href = "hundru.html"; }
