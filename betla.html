@@ -30,6 +30,9 @@
       <audio id="tamil-audio" src="betla.mp3"></audio> <!-- Added Tamil audio here -->
       <!-- Pre-recorded Odia Audio -->
       <audio id="odia-audio" src="betla-or.m4a"></audio>
+      <audio id="en-audio" src="betla-eng.mp3"></audio>
+      <audio id="hi-audio" src="betla-hi.mp3"></audio>
+
     </a-assets>
 
     <!-- Skybox -->
@@ -52,43 +55,38 @@
 
 <script>
   function playDescription(lang) {
-    const utterance = new SpeechSynthesisUtterance();
 
     if (lang === "en") {
-      utterance.text =
-        "Welcome to Betla National Park, one of the richest wildlife zones of Jharkhand. Dense forests, waterfalls, elephants, deer, bison and many bird species make this place naturally mesmerizing. The peaceful green surroundings offer a refreshing and immersive experience.";
-      utterance.lang = "en-IN";
-    } 
-    else if (lang === "hi") {
-      utterance.text =
-        "बेतला राष्ट्रीय उद्यान में आपका स्वागत है। यह झारखंड के सबसे समृद्ध वन क्षेत्रों में से एक है। यहाँ घने जंगल, जलप्रपात, हाथी, हिरण, बाइसन और अनेक पक्षियों की प्रजातियाँ पाई जाती हैं। प्रकृति से घिरा यह स्थान शांत और बेहद मनमोहक अनुभव प्रदान करता है।";
-      utterance.lang = "hi-IN";
-    } 
-    else if (lang === "ta") {
-      utterance.text =
-        "பெட்லா தேசிய பூங்காவிற்கு வரவேற்கிறோம். இது ஜார்கண்டின் மிகச் செழிப்பான வனப் பகுதிகளில் ஒன்றாகும். அடர்ந்த காடுகள், அருவிகள், யானைகள், மான், பைசன் மற்றும் பல பறவை இனங்கள் இங்கு காணப்படுகின்றன. இயற்கையால் சூழப்பட்ட இந்த அமைதியான சூழல் ஒரு மனதை கவரும் அனுபவத்தை வழங்குகிறது.";
-      utterance.lang = "ta-IN";
+      const audio = document.getElementById('en-audio');
+      audio.play().catch(err => console.log("English audio error:", err));
+      return;
     }
 
-    utterance.rate = 1;
-    speechSynthesis.speak(utterance);
+    if (lang === "hi") {
+      const audio = document.getElementById('hi-audio');
+      audio.play().catch(err => console.log("Hindi audio error:", err));
+      return;
+    }
+
+    if (lang === "ta") {
+      document.getElementById('tamil-audio').play();
+      return;
+    }
   }
 
   function playTamilDescription() {
-    // Access the preloaded Tamil audio and play it
-    const tamilAudio = document.getElementById('tamil-audio');
-    tamilAudio.play().catch(err => console.log("Tamil audio error:", err));
+    document.getElementById('tamil-audio').play();
   }
 
   function playOdiaDescription() {
-    // Access the preloaded Odia audio and play it
-    const odiaAudio = document.getElementById('odia-audio');
-    odiaAudio.play().catch(err => console.log("Odia audio error:", err));
+    document.getElementById('odia-audio').play();
   }
 
   function goPrev() { window.location.href = "netarhat.html"; }
   function exitTour() { window.location.href = "index.html"; }
 </script>
 
+
 </body>
 </html>
+
