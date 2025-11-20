@@ -92,7 +92,6 @@
     .speak-btn:hover {
         background: #00bcd4;
     }
-
 </style>
 </head>
 
@@ -125,8 +124,6 @@
         Betla Park
     </div>
 
-    <!-- Tagore Hill removed completely -->
-
     <!-- Info Box -->
     <div class="info-box" id="infoText">
         Jharkhand, known as the "Land of Forests," is rich in natural beauty, waterfalls, wildlife,
@@ -134,21 +131,20 @@
         through this interactive VR experience.
     </div>
 
+    <!-- Hidden Audio File -->
+    <audio id="englishAudio" src="Audio-11_20_2025.m4a"></audio>
+
     <!-- English Speech Button -->
-    <button class="speak-btn" onclick="speakEnglish()">🔊 Speak (English)</button>
+    <button class="speak-btn" onclick="playEnglishAudio()">🔊 Speak (English)</button>
 
 </div>
 
 <script>
-function speakEnglish() {
-    const text = document.getElementById("infoText").innerText;
-
-    const speech = new SpeechSynthesisUtterance(text);
-    speech.lang = "en-IN";
-    speech.rate = 0.95;
-
-    speechSynthesis.cancel();
-    speechSynthesis.speak(speech);
+function playEnglishAudio() {
+    const audio = document.getElementById("englishAudio");
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
 }
 </script>
 
