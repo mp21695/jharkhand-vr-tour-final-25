@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Baba Baidyanath Temple – Virtual Tour 🛕</title>
 
-  <!-- A-Frame Library -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
   <style>
@@ -16,105 +15,72 @@
       color: white;
       text-align: center;
     }
-    h1 {
-      margin-top: 10px;
-      font-size: 24px;
-    }
+    h1 { margin-top: 10px; font-size: 24px; }
     #view {
-      width: 100%;
-      height: 80vh;
-      border-radius: 12px;
-      overflow: hidden;
+      width: 100%; height: 80vh;
+      border-radius: 12px; overflow: hidden;
     }
-    .controls {
-      padding: 10px;
-    }
+    .controls { padding: 10px; }
     button {
-      background-color: #d97706;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 20px;
-      margin: 6px;
-      font-size: 16px;
-      cursor: pointer;
+      background-color: #d97706; color: white;
+      border: none; border-radius: 8px;
+      padding: 10px 20px; margin: 6px;
+      font-size: 16px; cursor: pointer;
     }
-    button:hover {
-      background-color: #b45309;
-    }
+    button:hover { background-color: #b45309; }
   </style>
 </head>
 
 <body>
 
-  <h1>Baba Baidyanath Temple – Virtual Tour 🛕</h1>
+<h1>Baba Baidyanath Temple – Virtual Tour 🛕</h1>
 
-  <!-- 360° VIEW AREA -->
-  <div id="view">
-    <a-scene embedded>
-      <a-assets>
-        <img id="skyimg" src="baidyanath-temple-360.jpg">
-        <audio id="bells" src="templebells.mp3"></audio>
-        <!-- Pre-recorded Tamil Audio -->
-        <audio id="taAudio" src="temple.mp3"></audio>
-        <!-- Pre-recorded Odia Audio -->
-        <audio id="orAudio" src="temple_or  (1).m4a"></audio>
-      </a-assets>
+<div id="view">
+  <a-scene embedded>
+    <a-assets>
+      <img id="skyimg" src="baidyanath-temple-360.jpg">
 
-      <a-sky src="#skyimg"></a-sky>
+      <audio id="bells" src="templebells.mp3"></audio>
 
-      <!-- Temple Bells Sound -->
-      <a-entity sound="src: #bells; autoplay: true; loop: true; volume: 1.0;"></a-entity>
+      <!-- Local mp3 for English & Hindi -->
+      <audio id="enAudio" src="temple_eng.mp3"></audio>
+      <audio id="hiAudio" src="temple-hi.mp3"></audio>
 
-    </a-scene>
-  </div>
+      <!-- Tamil -->
+      <audio id="taAudio" src="temple.mp3"></audio>
 
-  <!-- BUTTON CONTROLS -->
-  <div class="controls">
-    <button onclick="playDescription('en')">🎧 Play English Description</button>
-    <button onclick="playDescription('hi')">🎙️ प्ले हिंदी विवरण</button>
-    <button onclick="playDescription('ta')">🔊 தமிழ் விளக்கம்</button>
-    <button onclick="playDescription('or')">🪔 ଓଡ଼ିଆ ବର୍ଣ୍ଣନା</button>
-    <button onclick="goNext()">Next Location ➡️</button>
-  </div>
+      <!-- Odia -->
+      <audio id="orAudio" src="temple_or (1).m4a"></audio>
+    </a-assets>
 
-  <script>
-    function playDescription(lang) {
+    <a-sky src="#skyimg"></a-sky>
 
-      // ====== TAMIL AUDIO USING temple.mp3 ======
-      if (lang === "ta") {
-        const audio = document.getElementById("taAudio");
-        audio.play().catch(err => console.log("Tamil play error:", err));
-        return;
-      }
+    <a-entity sound="src: #bells; autoplay: true; loop: true; volume: 1.0;"></a-entity>
+  </a-scene>
+</div>
 
-      // ====== ODIA AUDIO USING temple-or.mp3 ======
-      if (lang === "or") {
-        const audio = document.getElementById("orAudio");
-        audio.play().catch(err => console.log("Odia play error:", err));
-        return;
-      }
+<div class="controls">
+  <button onclick="playDescription('en')">🎧 Play English Description</button>
+  <button onclick="playDescription('hi')">🎙️ प्ले हिंदी विवरण</button>
+  <button onclick="playDescription('ta')">🔊 தமிழ் விளக்கம்</button>
+  <button onclick="playDescription('or')">🪔 ଓଡ଼ିଆ ବର୍ଣ୍ଣନା</button>
 
-      // ====== ENGLISH & HINDI USING BROWSER TTS ======
-      const speak = new SpeechSynthesisUtterance();
+  <button onclick="goNext()">Next Location ➡️</button>
+</div>
 
-      if (lang === "en") {
-        speak.text = "Welcome to the sacred Baba Baidyanath Temple, one of the twelve Jyotirlingas of Lord Shiva. This temple is located in Deoghar, Jharkhand.";
-        speak.lang = "en-IN";
-      }
+<script>
+  function playDescription(lang) {
 
-      if (lang === "hi") {
-        speak.text = "पवित्र बाबा बैद्यनाथ मंदिर में आपका स्वागत है। यह भगवान शिव के बारह ज्योतिर्लिंगों में से एक है और देवघर, झारखंड में स्थित है।";
-        speak.lang = "hi-IN";
-      }
+    if (lang === "ta") { document.getElementById("taAudio").play(); return; }
+    if (lang === "or") { document.getElementById("orAudio").play(); return; }
+    if (lang === "en") { document.getElementById("enAudio").play(); return; }
+    if (lang === "hi") { document.getElementById("hiAudio").play(); return; }
+  }
 
-      speak.rate = 1;
-      speechSynthesis.speak(speak);
-    }
+  function goNext() {
+    window.location.href = "hundru.html";
+  }
+</script>
 
-    function goNext() {
-      window.location.href = "hundru.html";
-    }
-  </script>
 </body>
 </html>
