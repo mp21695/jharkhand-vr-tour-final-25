@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <title>Betla National Park – Virtual Tour 🐘</title>
+
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
   <style>
-    body { margin: 0; background: black; font-family: Arial, sans-serif; color: white; text-align: center; }
+    body { margin: 0; background: black; font-family: Arial; color: white; text-align: center; }
     h1 { margin-top: 10px; font-size: 24px; }
     #view { width: 100%; height: 80vh; border-radius: 12px; overflow: hidden; }
     .controls { padding: 10px; }
-    button { 
-      background-color: #0078d7; color: white; border: none; border-radius: 8px;
-      padding: 10px 20px; margin: 6px; font-size: 16px; cursor: pointer;
+    button {
+      background-color: #0078d7; color: white;
+      border: none; border-radius: 8px;
+      padding: 10px 20px; margin: 6px;
+      font-size: 16px; cursor: pointer;
     }
     button:hover { background-color: #005fa3; }
   </style>
@@ -23,22 +27,24 @@
 <div id="view">
   <a-scene embedded>
 
-    <!-- Preload assets -->
     <a-assets>
       <img id="skyimg" src="betla-national-park-360.jpg">
+
       <audio id="bg-sound" src="forest.mp3"></audio>
-      <audio id="tamil-audio" src="betla.mp3"></audio> <!-- Added Tamil audio here -->
-      <!-- Pre-recorded Odia Audio -->
-      <audio id="odia-audio" src="betla-or.m4a"></audio>
+
+      <!-- Local EN & HI -->
       <audio id="en-audio" src="betla_eng.mp3"></audio>
       <audio id="hi-audio" src="betla-hi.mp3"></audio>
 
+      <!-- Tamil -->
+      <audio id="tamil-audio" src="betla.mp3"></audio>
+
+      <!-- Odia -->
+      <audio id="odia-audio" src="betla-or.m4a"></audio>
     </a-assets>
 
-    <!-- Skybox -->
     <a-sky src="#skyimg" rotation="0 -90 0"></a-sky>
 
-    <!-- Background sound -->
     <a-entity sound="src: #bg-sound; autoplay: true; loop: true; volume: 1.0;"></a-entity>
 
   </a-scene>
@@ -47,31 +53,17 @@
 <div class="controls">
   <button onclick="playDescription('en')">🎧 Play English Description</button>
   <button onclick="playDescription('hi')">🎙️ प्ले हिंदी विवरण</button>
-  <button onclick="playTamilDescription()">🎤 தமிழ் விவரம் இயக்கவும்</button> <!-- Tamil button -->
+  <button onclick="playTamilDescription()">🎤 தமிழ் விவரம் இயக்கவும்</button>
   <button onclick="playOdiaDescription()">🪔 ଓଡ଼ିଆ ବର୍ଣ୍ଣନା</button>
+
   <button onclick="goPrev()">⬅️ Previous Location</button>
   <button onclick="exitTour()">🚪 Exit Tour</button>
 </div>
 
 <script>
   function playDescription(lang) {
-
-    if (lang === "en") {
-      const audio = document.getElementById('en-audio');
-      audio.play().catch(err => console.log("English audio error:", err));
-      return;
-    }
-
-    if (lang === "hi") {
-      const audio = document.getElementById('hi-audio');
-      audio.play().catch(err => console.log("Hindi audio error:", err));
-      return;
-    }
-
-    if (lang === "ta") {
-      document.getElementById('tamil-audio').play();
-      return;
-    }
+    if (lang === "en") { document.getElementById('en-audio').play(); return; }
+    if (lang === "hi") { document.getElementById('hi-audio').play(); return; }
   }
 
   function playTamilDescription() {
@@ -86,8 +78,5 @@
   function exitTour() { window.location.href = "index.html"; }
 </script>
 
-
 </body>
 </html>
-
-
