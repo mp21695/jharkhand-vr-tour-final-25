@@ -56,9 +56,16 @@
       <!-- Load local assets -->
       <a-assets>
         <img id="skyimg" src="hundru-falls.jpg">
+
         <audio id="waterfall" src="waterfall.mp3"></audio>
+
+        <!-- Local English & Hindi Audio -->
+        <audio id="enAudio" src="hundru_eng.mp3"></audio>
+        <audio id="hiAudio" src="hundru-hi.mp3"></audio>
+
         <!-- Pre-recorded Tamil Audio -->
         <audio id="taAudio" src="hundru.mp3"></audio>
+
         <!-- Pre-recorded Odia Audio -->
         <audio id="orAudio" src="hundru-or.m4a"></audio>
       </a-assets>
@@ -84,37 +91,33 @@
   <script>
     function playDescription(lang) {
 
-      // ====== TAMIL AUDIO USING hundru.mp3 ======
+      // ====== TAMIL AUDIO ======
       if (lang === 'ta') {
-        const audio = document.getElementById("taAudio");
-        audio.play().catch(err => console.log("Tamil play error:", err));
+        document.getElementById("taAudio").play()
+          .catch(err => console.log("Tamil play error:", err));
         return;
       }
 
-      // ====== ODIA AUDIO USING hundru-or.mp3 ======
+      // ====== ODIA AUDIO ======
       if (lang === 'or') {
-        const audio = document.getElementById("orAudio");
-        audio.play().catch(err => console.log("Odia play error:", err));
+        document.getElementById("orAudio").play()
+          .catch(err => console.log("Odia play error:", err));
         return;
       }
 
-      // ====== ENGLISH & HINDI USING BROWSER TTS ======
-      const utterance = new SpeechSynthesisUtterance();
-
+      // ====== LOCAL ENGLISH AUDIO ======
       if (lang === 'en') {
-        utterance.text = 
-          "Welcome to Hundru Falls, one of the highest and most beautiful waterfalls in Jharkhand. The Subarnarekha River plunges from a great height, creating a magnificent mist and roar. The surrounding forest and rocky cliffs make it a popular tourist spot.";
-        utterance.lang = 'en-IN';
-
-      } else if (lang === 'hi') {
-        utterance.text =
-          "हिंद्रु जलप्रपात में आपका स्वागत है। यह झारखंड के सबसे ऊँचे और सुंदर झरनों में से एक है। यहाँ सुवर्णरेखा नदी ऊँचाई से गिरती है, जिससे चारों ओर धुंध और गर्जना का सुंदर दृश्य बनता है। आसपास का जंगल और चट्टानें इस स्थान को बेहद आकर्षक बनाती हैं।";
-        utterance.lang = 'hi-IN';
-
+        document.getElementById("enAudio").play()
+          .catch(err => console.log("English play error:", err));
+        return;
       }
 
-      utterance.rate = 1;
-      speechSynthesis.speak(utterance);
+      // ====== LOCAL HINDI AUDIO ======
+      if (lang === 'hi') {
+        document.getElementById("hiAudio").play()
+          .catch(err => console.log("Hindi play error:", err));
+        return;
+      }
     }
 
     function goPrev() { window.location.href = "temple.html"; }
