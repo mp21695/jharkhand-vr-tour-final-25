@@ -5,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Netarhat Hills – Virtual Tour 🌄</title>
 
-  <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
   <style>
-    body { margin: 0; background-color: #000; font-family: Arial, sans-serif; color: white; text-align: center; }
+    body { margin: 0; background-color: #000; font-family: Arial; color: white; text-align: center; }
     h1 { margin-top: 10px; font-size: 24px; }
     #view { width: 100%; height: 80vh; border-radius: 12px; overflow: hidden; }
     .controls { padding: 10px; }
     button {
-      background-color: #0078d7; color: white; border: none; border-radius: 8px;
-      padding: 10px 20px; margin: 6px; font-size: 16px; cursor: pointer;
+      background-color: #0078d7; color: white;
+      border: none; border-radius: 8px;
+      padding: 10px 20px; margin: 6px;
+      font-size: 16px; cursor: pointer;
     }
     button:hover { background-color: #005fa3; }
   </style>
@@ -24,68 +25,52 @@
 
 <h1>Netarhat Hills – Virtual Tour 🌄</h1>
 
-<!-- 360° VIEW AREA -->
 <div id="view">
   <a-scene embedded>
+
     <a-assets>
       <img id="skyimg" src="netarhat-sunset-360.jpg">
-      <audio id="bg-sound" src="forestwind.mp3"></audio>
-      <audio id="tamil-audio" src="netarhat.mp3"></audio> <!-- Added Tamil audio here -->
-      <!-- Pre-recorded Odia Audio -->
+
+      <!-- Local EN & HI -->
+      <audio id="en-audio" src="netarhat_eng.mp3"></audio>
+      <audio id="hi-audio" src="netarhat-hi.mp3"></audio>
+
+      <!-- Tamil -->
+      <audio id="tamil-audio" src="netarhat.mp3"></audio>
+
+      <!-- Odia -->
       <audio id="odia-audio" src="netarhat-or.m4a"></audio>
     </a-assets>
 
     <a-sky src="#skyimg" rotation="0 -90 0"></a-sky>
+
   </a-scene>
 </div>
 
-<!-- HTML Buttons for Controls -->
 <div class="controls">
   <button onclick="playDescription('en')">🎧 Play English Description</button>
   <button onclick="playDescription('hi')">🎙️ प्ले हिंदी विवरण</button>
   <button onclick="playTamilDescription()">🔊 தமிழ் விளக்கம்</button>
   <button onclick="playOdiaDescription()">🪔 ଓଡ଼ିଆ ବର୍ଣ୍ଣନା</button>
+
   <button onclick="goPrev()">⬅️ Previous Location</button>
   <button onclick="goNext()">Next Location ➡️</button>
 </div>
 
-<!-- Background Sound -->
-<audio id="bg-audio" src="forestwind.mp3" autoplay loop></audio>
-
 <script>
   function playDescription(lang) {
-    const utterance = new SpeechSynthesisUtterance();
 
-    if (lang === 'en') {
-      utterance.text =
-        "Welcome to Netarhat Hills, known as the Queen of Chotanagpur. This beautiful hill station is famous for its cool climate, dense pine forests, and stunning sunrise and sunset views.";
-      utterance.lang = "en-IN";
-
-    } else if (lang === 'hi') {
-      utterance.text =
-        "नेतरहाट हिल्स में आपका स्वागत है, जिसे छोटानागपुर की रानी कहा जाता है। यह खूबसूरत पहाड़ी स्थान अपने ठंडे मौसम, घने चीड़ के जंगल और शानदार सूर्योदय और सूर्यास्त के दृश्यों के लिए प्रसिद्ध है।";
-      utterance.lang = "hi-IN";
-
-    } else if (lang === 'ta') {
-      utterance.text =
-        "சோட்டாநாக்பூர் மலைகளின் ராணி என அழைக்கப்படும் நேதர்ஹாட் மலைத்தொடருக்கு வரவேற்கிறோம். இங்கு குளிரான காலநிலை, அடர்ந்த பைன் காடுகள் மற்றும் அற்புதமான சூரிய உதயம் மற்றும் அஸ்தமனக் காட்சிகளுக்காக பிரபலமாக உள்ளது.";
-      utterance.lang = "ta-IN";
-    }
-
-    utterance.rate = 1;
-    speechSynthesis.speak(utterance);
+    if (lang === 'en') { document.getElementById('en-audio').play(); return; }
+    if (lang === 'hi') { document.getElementById('hi-audio').play(); return; }
+    if (lang === 'ta') { document.getElementById('tamil-audio').play(); return; }
   }
 
   function playTamilDescription() {
-    // Access the preloaded Tamil audio and play it
-    const tamilAudio = document.getElementById('tamil-audio');
-    tamilAudio.play().catch(err => console.log("Tamil audio error:", err));
+    document.getElementById('tamil-audio').play();
   }
 
   function playOdiaDescription() {
-    // Access the preloaded Odia audio and play it
-    const odiaAudio = document.getElementById('odia-audio');
-    odiaAudio.play().catch(err => console.log("Odia audio error:", err));
+    document.getElementById('odia-audio').play();
   }
 
   function goPrev() { window.location.href = "patratu.html"; }
